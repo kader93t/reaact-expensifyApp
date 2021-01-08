@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the DashBoardPage  1`] = `
+<div>
+  Welcom to react Router
+  <Connect(ExpensesFilters) />
+  <Connect(ExpensesList) />
+</div>
+`;

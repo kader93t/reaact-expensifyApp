@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the item  1`] = `
+<div>
+  <NavLink
+    to="/edite/1"
+  >
+    hello1
+  </NavLink>
+  2.12
+   - 
+  0
+</div>
+`;
