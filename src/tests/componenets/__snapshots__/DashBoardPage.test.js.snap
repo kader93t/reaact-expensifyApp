@@ -3,6 +3,7 @@
 exports[`should render the DashBoardPage  1`] = `
 <div>
   Welcom to react Router
+  <ExpensesSummary />
   <Connect(ExpensesFilters) />
   <Connect(ExpensesList) />
 </div>

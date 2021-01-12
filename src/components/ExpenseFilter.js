@@ -78,7 +78,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dsipatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setSortByAmount: () => dispatch(setSortByAmount()),
