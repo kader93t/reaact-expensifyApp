@@ -12,5 +12,4 @@ const ExpenseDashBoardPage = () => (
     </div>
 );
 
-
 export default ExpenseDashBoardPage;

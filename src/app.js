@@ -8,7 +8,7 @@ import { addExpense } from "./actions/expneses"
 import "normalize.css/normalize.css"
 import './style/style.scss'
 import 'react-dates/lib/css/_datepicker.css';
-
+import "./firebase/config"
 const store = storeConfiguration();
 store.dispatch(addExpense({ description: "water bill", note: "from react", amount: 300, createAt: 1025 }));
 store.dispatch(addExpense({ description: "gas bill", note: "from react", amount: 150, createAt: 120 }));

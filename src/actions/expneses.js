@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid"
-
+import { database } from "../firebase/config";
 // Add Expense Action
-export const addExpense = ({ description = "", note = "", amount = 0, createAt = 0 } = {}) => {
+export const addExpense = ({id ="", description = "", note = "", amount = 0, createAt = 0 } = {}) => {
     return {
         type: "ADD_EXPENSE",
         expenses: {
@@ -9,10 +9,23 @@ export const addExpense = ({ description = "", note = "", amount = 0, createAt =
             note,
             amount,
             createAt,
-            id:uuid()
+            id: id || uuid()
         }
     }
 }
+
+export const startAddExpense = (expense = {}) => {
+    return (dispatch) => {
+        return database.ref("expenses").push(expense)
+            .then((ref) => {
+                dispatch(addExpense({
+                    id: ref.key,
+                    ...expense
+                }))
+            })
+    }
+};
+
 // Remove Expense Action
 export const removeExpense = (id) => {
     {return {

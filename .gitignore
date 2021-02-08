@@ -2,3 +2,5 @@ node_modules
 bundle-*.js
 main.css
 index.html
+.env.development
+.env.test
