@@ -8,7 +8,7 @@ export const ExpensesList = (props) => (
     <div>
         <h1>Expenses List</h1>
         {props.expenses.map((expense) => (
-          
+             
             <ExpensItem key={expense.id} {...expense}/>
         ))}
     </div>

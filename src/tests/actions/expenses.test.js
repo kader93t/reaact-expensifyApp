@@ -1,9 +1,20 @@
-import { addExpense, editeExpense, removeExpense, startAddExpense } from "../../actions/expneses"
+import { addExpense, editeExpense, removeExpense, startAddExpense, setExpenses, startSetExpenses, startRemoveExpense} from "../../actions/expneses"
 import moment from "moment";
 import thunk from 'redux-thunk';
 import configureStore from "redux-mock-store";
 import { database } from "../../firebase/config";
+import { expenses } from "../fixture/expenses";
+
 const mockStore = configureStore([thunk]);
+let expensesData = {};
+beforeEach((done) => {
+    expenses.forEach(({ id, description, note, amount, createAt }) => {
+        expensesData[id] = { description, note, amount, createAt };
+    });
+    database.ref("expenses").set(expensesData).then(() => {
+        done();
+    });
+});
 
 //Test Add Expense :
 test('should add expense with provided value', () => {
@@ -72,6 +83,79 @@ test('should Edite Expense', () => {
     }
     });
 });
+
+// Set expenses 
+
+test('should set expenses ', () => {
+    const action = setExpenses(expenses[1]);
+    const expectedAction = {
+        type: "SET_EXPENSES",
+        expenses: expenses[1]
+    };
+    expect(action).toEqual(expectedAction);
+}
+);
+
+test('should add the expenses from the database ', () => {
+    
+    const store = mockStore();
+
+    return store.dispatch(startSetExpenses()).then(() => {
+        
+        return database.ref("expenses").once("value", (snapshot) => {
+            let expenses = [];
+            snapshot.forEach(expense => {
+                expenses.push({
+                    ...expense.val(),
+                    id: expense.key
+                });
+            });
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: "SET_EXPENSES",
+                expenses
+            });
+        })
+    });
+});
+
+test('should Remove the document with the given id', () => {
+    const store = mockStore();
+    const id = expenses[0].id;
+    return store.dispatch(startRemoveExpense(id))
+        .then(() => {
+            return database.ref(`expenses`).once("value", (snapshot) => {
+                const result = snapshot.val().filter(expense => {
+                    return expense.id === id;
+                });
+                expect(store.getActions()[0]).toEqual({
+                    type: "REMOVE_EXPENSE",
+                    id:id
+                });
+                expect(result).toEqual([]);
+            });
+        });
+    
+});
+
+test('should do nothing with the given id that doesnt exist', () => {
+    const store = mockStore();
+    const id = "15wddf";
+    return database.ref("expenses").once("value", (beforRemove) => {
+        return store.dispatch(startRemoveExpense(id))
+            .then(() => {
+                return database.ref("expenses").once("value", (afterRemove) => {
+                    expect(store.getActions()[0]).toEqual({
+                        type: "REMOVE_EXPENSE",
+                        id: id
+                    });
+                    expect(beforRemove.val()).toEqual(afterRemove.val());
+                })
+            });
+    });
+});
+
+
 
 test('should add the expense with given value to the database', () => {
     const expense = {

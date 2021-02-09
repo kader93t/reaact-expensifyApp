@@ -1,4 +1,5 @@
 import expenseReducer from "./../../reducers/expenses"
+import {  } from "../fixture/expenses";
 const expense = {
     id: 1,
     description: "expense",
@@ -18,19 +19,18 @@ test("should Add expneses ", () => {
 test("should Remove expenses ", () => {
     const state = expenseReducer([expense], {
         type: "REMOVE_EXPENSE",
-        id:1
+        id: 1
     })
     expect(state).toEqual([]);
-})
+});
 
 test("should not Remove expenses ", () => {
     const state = expenseReducer([expense], {
         type: "REMOVE_EXPENSE",
-        id:2
+        id: 2
     })
     expect(state).toEqual([expense]);
-})
-
+});
 
 test("should edit expense ", () => {
     const updates = {
@@ -65,4 +65,12 @@ test("should edit do nothing ", () => {
         updates: updates
     });
     expect(state).toEqual([expense]);
+});
+
+test('should Set expenses', () => {
+    const state = expenseReducer(undefined, {
+        type: "SET_EXPENSES",
+        expenses: expense
+    });
+    expect(state).toEqual(expense);
 });

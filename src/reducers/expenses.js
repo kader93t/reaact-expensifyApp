@@ -5,13 +5,15 @@ export default (state = expenseDefaultState, action) => {
     
     switch (action.type) {
         case "ADD_EXPENSE":
-            return [       
+            return [
                 ...state, action.expenses
-            ]
+            ];
+        
         case "REMOVE_EXPENSE":
             return state.filter((expense) => {
                 return expense.id !== action.id;
-            })
+            });
+        
         case "UPDATE_EXPENSE":
             return state.map((expense) => {
                 if (expense.id === action.id) {
@@ -23,7 +25,10 @@ export default (state = expenseDefaultState, action) => {
                     return expense;
                 }
             });
-            ;
+        
+        case "SET_EXPENSES":
+            return action.expenses;
+        
         default:
             return state;
     }
