@@ -11,7 +11,14 @@ const firebaseConfig = {
 };
   // Initialize Firebase
 firebase.default.initializeApp(firebaseConfig);
-export const database = firebase.default.database();
+
+const database = firebase.default.database();
+const googleAuthProvider = new firebase.default.auth.GoogleAuthProvider();
+
+export { firebase, database, googleAuthProvider };
+
+  
+  
 // database.ref('aboutMe').set({
 //   name: "BENANANE Abdelkader",
 //   age: 27,

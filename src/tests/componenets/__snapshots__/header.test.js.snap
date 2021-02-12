@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should  1`] = `
+exports[`should render the header 1`] = `
 <div>
   <h1>
     Expense App
@@ -8,7 +8,7 @@ exports[`should  1`] = `
   <NavLink
     activeClassName="is-active"
     exact={true}
-    to="/"
+    to="/dashboard"
   >
       Home  
   </NavLink>
@@ -18,17 +18,10 @@ exports[`should  1`] = `
   >
      Create expense 
   </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    to="/edite/25"
+  <button
+    onClick={[MockFunction]}
   >
-     Edite expnese 
-  </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    to="/help"
-  >
-     Edite expnese 
-  </NavLink>
+    LogOut
+  </button>
 </div>
 `;

@@ -1,4 +1,4 @@
-import { addExpense, editeExpense, removeExpense, startAddExpense, setExpenses, startSetExpenses, startRemoveExpense} from "../../actions/expneses"
+import { addExpense, editeExpense, removeExpense, startAddExpense, setExpenses, startSetExpenses, startRemoveExpense, startEditeExpense} from "../../actions/expneses"
 import moment from "moment";
 import thunk from 'redux-thunk';
 import configureStore from "redux-mock-store";
@@ -84,6 +84,40 @@ test('should Edite Expense', () => {
     });
 });
 
+test('should edit expenses (database)', (done) => {
+    const store = mockStore();
+    return store.dispatch(startEditeExpense(expenses[0].id, {
+            
+        description: "hoola",
+        amount: 123,
+        note: " it's a test ",
+        createAt: 1234567890}))
+        .then(() => {
+            return database.ref(`expenses/${expenses[0].id}`)
+                .once("value")
+                .then((snapshot) => {
+                    expect(store.getActions()[0]).
+                        toEqual({
+                            type: "UPDATE_EXPENSE",
+                            id: expenses[0].id,
+                            updates: {
+                                description: "hoola",
+                                amount: 123,
+                                note: " it's a test ",
+                                createAt: 1234567890}
+                        });
+                    expect(snapshot.val()).toEqual({
+                        description: "hoola",
+                        amount: 123,
+                        note: " it's a test ",
+                        createAt: 1234567890
+                    })
+                    done();
+                });
+        });    
+})
+
+
 // Set expenses 
 
 test('should set expenses ', () => {
@@ -96,7 +130,7 @@ test('should set expenses ', () => {
 }
 );
 
-test('should add the expenses from the database ', () => {
+test('should add the expenses from the database ', (done) => {
     
     const store = mockStore();
 
@@ -115,11 +149,12 @@ test('should add the expenses from the database ', () => {
                 type: "SET_EXPENSES",
                 expenses
             });
+            done();
         })
     });
 });
 
-test('should Remove the document with the given id', () => {
+test('should Remove the document with the given id', (done) => {
     const store = mockStore();
     const id = expenses[0].id;
     return store.dispatch(startRemoveExpense(id))
@@ -133,12 +168,13 @@ test('should Remove the document with the given id', () => {
                     id:id
                 });
                 expect(result).toEqual([]);
+                done();
             });
         });
     
 });
 
-test('should do nothing with the given id that doesnt exist', () => {
+test('should do nothing with the given id that doesnt exist', (done) => {
     const store = mockStore();
     const id = "15wddf";
     return database.ref("expenses").once("value", (beforRemove) => {
@@ -150,6 +186,7 @@ test('should do nothing with the given id that doesnt exist', () => {
                         id: id
                     });
                     expect(beforRemove.val()).toEqual(afterRemove.val());
+                    done();
                 })
             });
     });
@@ -157,7 +194,7 @@ test('should do nothing with the given id that doesnt exist', () => {
 
 
 
-test('should add the expense with given value to the database', () => {
+test('should add the expense with given value to the database', (done) => {
     const expense = {
         description: "test_description",
         note: "test_note",
@@ -185,11 +222,12 @@ test('should add the expense with given value to the database', () => {
                         id: actions[0].expenses.id
                     })
                         .toEqual(actions[0].expenses);
+                    done();
                 })
         });
 });
 
-test('should add the default value to the database ', () => {
+test('should add the default value to the database ', (done) => {
     const expense = {
         description: "",
         note: "",
@@ -218,6 +256,7 @@ test('should add the default value to the database ', () => {
                         id: actions[0].expenses.id
                     })
                         .toEqual(actions[0].expenses);
+                    done();
                 })
         }); 
 });
