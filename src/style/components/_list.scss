@@ -1,0 +1,68 @@
+.list__header {
+  border: 1px solid darken($color: whitesmoke, $amount: 7);
+  display: flex;
+  justify-content: space-between;
+  background-color: darken($color: whitesmoke, $amount: 1);
+  height: $l-size;
+  align-items: center;
+  padding: 0 $s-size;
+}
+
+.list-body {
+  margin-bottom: $m-size;
+  @media (min-width: $desktop-breakpoint) {
+      margin-bottom: $l-size;
+  }
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid darken($color: whitesmoke, $amount: 7);
+  border-top: 0;
+  text-decoration: none;
+  padding: $s-size;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: $m-size;
+  }
+  transition: shadow 0.3 ease;
+}
+
+.list-item:hover {
+  background-color: darken($color: white, $amount: 1.5);
+  box-shadow: 0 0 10px darken($color: white, $amount: 8);
+}
+
+.list-item__title {
+    margin: $s-size 0;
+    word-break: break-all;
+    color: $black;
+    font-weight: 650;
+}
+
+.list-item__sub-title {
+    color: $black;
+    font-size: 1.4rem;
+    padding: $m-size 0;
+}
+
+.list-item__amount {
+    color: $black;
+    margin: $s-size 0;
+    @media (min-width: $desktop-breakpoint) {
+        padding: 0 0 0 $s-size;
+    }
+}
+
+.list__empty-list{
+    @extend .list-item;
+    justify-content: center;
+    &:hover{
+        box-shadow: none;
+        background: none;
+    }
+    
+}

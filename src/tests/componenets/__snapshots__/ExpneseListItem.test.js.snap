@@ -1,14 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render the item  1`] = `
-<div>
-  <NavLink
-    to="/edite/1"
+<Link
+  className="list-item"
+  to="/edite/1"
+>
+  <div
+    className=""
   >
-    hello1
-  </NavLink>
-  2.12
-   - 
-  0
-</div>
+    <h3
+      className="list-item__title"
+    >
+      hello1
+    </h3>
+    <span
+      className="list-item__sub-title"
+    >
+      1st January 1970
+    </span>
+  </div>
+  <div>
+    <h3
+      className="list-item__amount"
+    >
+      $2.12
+    </h3>
+  </div>
+</Link>
 `;

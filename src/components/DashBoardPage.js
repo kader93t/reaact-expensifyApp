@@ -5,7 +5,6 @@ import  ExpensesSummary  from "./ExpensesSummary";
 
 const ExpenseDashBoardPage = () => (
     <div>
-        Welcom to react Router
          <ExpensesSummary />
         <ExpenseFilter />
         <ExpensesList />

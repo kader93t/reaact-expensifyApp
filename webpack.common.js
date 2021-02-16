@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require("webpack");
+require("@babel/polyfill");
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development"
 if (process.env.NODE_ENV === "test") {
@@ -15,11 +16,13 @@ if (process.env.NODE_ENV === "test") {
 };
 
 module.exports = {
-    entry: "./src/app.js",
+    entry: ["@babel/polyfill","./src/app.js"],
     
     output: {
         path: path.join(__dirname, "public"),
+       // publicPath: "/public/",
         filename: "bundle-[contenthash].js"
+       
     },
     
     plugins: [new HtmlWebpackPlugin(
@@ -27,7 +30,7 @@ module.exports = {
             template: "./src/template.html",
             title: "Expensify-App"
         }
-    ), new CleanWebpackPlugin()
+    )//, new CleanWebpackPlugin()
     ,  new webpack.DefinePlugin({
             "process.env.FIREBASE_API_KEY": JSON.stringify(process.env.FIREBASE_API_KEY),
             "process.env.FIREBASE_AUTH_DOMAIN": JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
@@ -47,6 +50,15 @@ module.exports = {
             ],
             test: /\.js$/,
             exclude: /node_modules/
+        },
+            {
+            test: /\.(jpg|png|svg)$/,
+            use: {
+                loader: 'url-loader',
+                options: {
+                    limit: 25000
+                }
+            }
         }
         ]
     },

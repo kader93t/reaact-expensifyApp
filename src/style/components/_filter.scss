@@ -1,0 +1,18 @@
+.filter-input-group {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-bottom: $s-size;
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom: $m-size;
+  };
+};
+
+.filter-input-group__item {
+  margin-bottom: $s-size;
+  @media (min-width: $desktop-breakpoint){
+    margin: 0 $m-size 0 0;
+  };
+};
+

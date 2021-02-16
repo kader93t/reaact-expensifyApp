@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from "./router/AppRouter";
 import storeConfiguration from "./store/store";
 import { startSetExpenses } from "./actions/expneses";
-import {login, logout} from "./actions/auth"
+import { login, logout } from "./actions/auth";
+import LoadingPage from "./components/LodingPage";
 import "normalize.css/normalize.css";
 import './style/style.scss';
 import 'react-dates/lib/css/_datepicker.css';
@@ -22,7 +23,7 @@ const Jsx = () => (
     </Provider>
 );
 
-ReactDOM.render(<h3> Loading ...</h3>, document.getElementById("appRoot"));
+ReactDOM.render(<LoadingPage />, document.getElementById("appRoot"));
 
 let isRendered = false;
 const renderThePage = () => {

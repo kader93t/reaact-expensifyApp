@@ -1,0 +1,36 @@
+%button {
+  border: none;
+  background-color: #6495ed;
+  padding: $s-size $l-size;
+  color: cornsilk;
+  font-size: $m-size;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgb(97, 119, 97);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button {
+  @extend %button;
+}
+
+.button__logout {
+  @extend %button;
+  background: none;
+  box-shadow: none;
+}
+
+.button:hover {
+  box-shadow: 0 0 8px rgb(70, 90, 70);
+  //
+}
+
+.button__second {
+  @extend .button;
+  background-color: indianred;
+}
+
+.button__second:hover {
+  box-shadow: 0 0 8px indianred;
+}

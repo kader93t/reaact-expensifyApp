@@ -1,0 +1,22 @@
+.box-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    background: url("/public/images/login.jpg");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+.box-layout__box{
+    background: fade-out($color: rgb(185, 207, 185), $amount: .10);
+    border-radius: 3px;
+    text-align: center;
+    color: #333;
+    width: 25rem;
+    padding: $l-size $m-size;
+    box-shadow: 0 0 8px $black, 0 0 1px #333;
+}
+.box-layout__title{
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+}

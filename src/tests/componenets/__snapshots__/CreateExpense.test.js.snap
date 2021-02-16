@@ -2,11 +2,25 @@
 
 exports[`should create expense  1`] = `
 <div>
-  <h1>
-    Add expense 
-  </h1>
-  <ExpenseForm
-    onSubmit={[Function]}
-  />
+  <div
+    className="summary"
+  >
+    <div
+      className="content-container"
+    >
+      <h1
+        className="summary-page__title"
+      >
+        Add expense 
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content-container"
+  >
+    <ExpenseForm
+      onSubmit={[Function]}
+    />
+  </div>
 </div>
 `;

@@ -1,0 +1,17 @@
+.summary {
+  background-color: whitesmoke;
+  padding: $m-size 0;
+  margin-bottom: $m-size;
+}
+
+.summary-page__title {
+  font-weight: 400;
+  color: $black;
+  span {
+    font-weight:800;
+  }
+}
+
+.summary-page__actions{
+  margin-top: $m-size;
+}

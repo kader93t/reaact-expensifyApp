@@ -1,0 +1,30 @@
+.text-input{
+    height: 46px;
+    border: 1px solid rgb(210,210,210);
+    font-size: 19px;
+    font-weight: 200;
+    color: #484848;
+    padding: $s-size;
+    background-color: white;
+}
+%hover{
+    box-shadow: 0px 0px 2px  cornflowerblue;
+    border-radius: 4px;
+}
+
+.text-input:hover{
+    @extend %hover;
+}
+
+.text-input:focus{
+    @extend %hover;
+}
+
+.select{
+    @extend .text-input;
+}
+
+.input-area{
+    @extend .text-input;
+    height: 10rem;
+}
