@@ -2,6 +2,10 @@
 
 This app is built by using React for frontend and firebase for backend.
 
+The link to view the application : 
+
+https://react-training-expensifyapp.herokuapp.com
+
 ### What this app can do :
 
  ##### The crud operations 
