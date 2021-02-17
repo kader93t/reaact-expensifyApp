@@ -36,6 +36,7 @@ const renderThePage = () => {
 
 firebase.default.auth().onAuthStateChanged((user) => {
     if (user) {
+        console.log("hhhhh")
         store.dispatch(login(user.uid));
         store.dispatch(startSetExpenses()).then(() => {
             renderThePage()
