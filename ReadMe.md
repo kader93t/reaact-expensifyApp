@@ -2,15 +2,15 @@
 
 This app is built by using React for frontend and firebase for backend.
 
-### what this app can do :
+### What this app can do :
 
- ##### The curd aperations 
+ ##### The crud operations 
     - Add an expense
     - Modifie an expense 
     - Update an expense
     - Remove and expense
  
- ##### filter the list of expenses by :
+ ##### Filter the list of expenses by :
     - By date (range or exact)
     - By The description
  
