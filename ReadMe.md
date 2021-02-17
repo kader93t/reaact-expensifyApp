@@ -2,6 +2,8 @@
 
 This app is built by using React for frontend and firebase for backend.
 
+The app is tested by using Jest framework.
+
 The link to view the application : 
 
 https://react-training-expensifyapp.herokuapp.com
